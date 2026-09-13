@@ -1,0 +1,87 @@
+// Offline UI behavior tests; no geocoding requests or personal addresses sent.
+const fs = require('fs'), vm = require('vm'), assert = require('assert');
+const source = fs.readFileSync('assets/js/registration-address.js', 'utf8');
+function setup(fetcher, missingLeaflet=false, locations=null) {
+    const nodes = {};
+    for (const id of ['authMapDetails','latitude','longitude','mapStatus','findAddressLocation','confirmMapLocation','addressHouse','addressMoo','addressVillage','addressProvince','addressDistrict','addressSubdistrict']) {
+        nodes[id] = {value:'',textContent:'',events:{},addEventListener(type, fn){ this.events[type]=fn; }};
+    }
+    nodes.authMapDetails.dataset = {lat:'15',lng:'102',geocoder:'https://example.invalid/api/'};
+    if (locations) nodes.registrationVillageLocations={textContent:JSON.stringify(locations)};
+    nodes.addressHouse.value='95'; nodes.addressVillage.value='หนองบัว';
+    for (const [id,text] of [['addressProvince','นครราชสีมา'],['addressDistrict','จักราช'],['addressSubdistrict','คลองเมือง']]) Object.assign(nodes[id],{value:'1',selectedIndex:0,options:[{text}]});
+    const map={events:{},setView(){return this;},on(type,fn){this.events[type]=fn;},removeLayer(){}};
+    const L={map:()=>map,tileLayer:()=>({addTo(){}}),marker:point=>({point,events:{},addTo(){map.marker=this;return this;},on(type,fn){this.events[type]=fn;},setLatLng(p){this.point=p;},getLatLng(){return this.point;}})};
+    vm.runInNewContext(source,{document:{getElementById:id=>nodes[id]},window:{L:missingLeaflet ? undefined : L},L,URL,URLSearchParams,AbortController,setTimeout,clearTimeout,fetch:fetcher});
+    return {nodes,map,search:()=>nodes.findAddressLocation.events.click()};
+}
+function response(name, x=102.4, y=15.1, extra={}) { return {ok:true,json:async()=>({features:[{geometry:{type:'Point',coordinates:[x,y]},properties:{name,state:'นครราชสีมา',county:'อำเภอจักราช',district:'ตำบลคลองเมือง',...extra}}]})}; }
+(async()=>{
+    let calls=0;
+    const ui=setup(async()=>{calls++;return response('หนองบัว');});
+    assert.equal(calls,0,'Must not search while typing or loading');
+    assert(ui.map.marker,'Initial draggable marker missing');
+    assert.equal(ui.nodes.latitude.value,'','Initial marker must not save a coordinate');
+    await ui.search();
+    assert.equal(ui.nodes.latitude.value,'','Approximate village center saved as house');
+    assert.match(ui.nodes.mapStatus.textContent,/หมู่บ้าน/);
+    ui.nodes.confirmMapLocation.events.click();
+    assert.equal(ui.nodes.latitude.value,'15.10000000');
+    ui.nodes.addressHouse.events.input();
+    assert.equal(ui.nodes.latitude.value,''); assert.equal(ui.nodes.longitude.value,'');
+    ui.map.events.click({latlng:{lat:15.2,lng:102.5}});
+    assert.equal(ui.nodes.longitude.value,'102.50000000');
+    const unavailable=setup(async()=>{throw Error('offline');});
+    await unavailable.search(); assert.equal(unavailable.nodes.findAddressLocation.disabled,false);
+    assert.match(unavailable.nodes.mapStatus.textContent,/ค้นหาไม่สำเร็จ/);
+    assert(unavailable.map.marker,'Failure removed the draggable marker');
+    assert.equal(unavailable.nodes.latitude.value,'');
+    unavailable.map.marker.setLatLng({lat:15.25,lng:102.45});
+    unavailable.map.marker.events.dragend();
+    assert.equal(unavailable.nodes.latitude.value,'15.25000000','Dragging after failure did not save');
+    let resolve;
+    const stale=setup(()=>new Promise(r=>{resolve=r;}));
+    const waiting=stale.search();
+    stale.map.events.click({latlng:{lat:15.3,lng:102.6}});
+    resolve(response('หนองบัว')); await waiting;
+    assert.equal(stale.nodes.latitude.value,'15.30000000','Late response replaced manually chosen location');
+    const foreign=setup(async()=>response('หนองบัว',1,1)); await foreign.search();
+    assert.equal(foreign.nodes.latitude.value,'','Foreign result accepted');
+    const areaOnly=setup(async()=>response('จักราช'));
+    areaOnly.nodes.addressHouse.value='';areaOnly.nodes.addressVillage.value='';areaOnly.nodes.addressSubdistrict.value='';
+    await areaOnly.search();assert.match(areaOnly.nodes.mapStatus.textContent,/บริเวณอำเภอ/);
+    assert.equal(areaOnly.nodes.latitude.value,'');
+    const exactHouse=setup(async()=>response('บ้านพัก',102.4,15.1,{housenumber:'95',locality:'หนองบัว'}));
+    await exactHouse.search();assert.equal(exactHouse.nodes.latitude.value,'15.10000000');
+    assert.match(exactHouse.nodes.mapStatus.textContent,/เลขที่บ้านตรง/);
+    const numericName=setup(async()=>response('95',102.4,15.1));
+    await numericName.search();assert.equal(numericName.nodes.latitude.value,'','Place named 95 was treated as house 95');
+    const wrongArea=setup(async()=>response('หนองบัว',102.4,15.1,{county:'อำเภอเมือง',district:'ตำบลอื่น'}));
+    await wrongArea.search();assert.equal(wrongArea.nodes.latitude.value,'');assert.match(wrongArea.nodes.mapStatus.textContent,/ไม่พบตำแหน่ง/);
+    assert(wrongArea.map.marker,'No-match search removed marker');
+    const sparse=setup(async()=>response('บ้านหนองบัว',102.4,15.1,{county:undefined,district:undefined}));
+    await sparse.search();assert.match(sparse.nodes.mapStatus.textContent,/บริเวณหมู่บ้าน/);assert.equal(sparse.nodes.latitude.value,'');
+    const provinceOnly=setup(async()=>response('จังหวัดนครราชสีมา',102.4,15.1,{state:undefined,county:undefined,district:undefined}));
+    await provinceOnly.search();assert.match(provinceOnly.nodes.mapStatus.textContent,/บริเวณจังหวัด/);assert.equal(provinceOnly.nodes.latitude.value,'');
+    const wrongSubdistrict=setup(async()=>response('บ้านพัก',102.4,15.1,{housenumber:'95',locality:'หนองบัว',district:'ตำบลอื่น'}));
+    await wrongSubdistrict.search();assert.equal(wrongSubdistrict.nodes.latitude.value,'','Wrong subdistrict accepted');
+    const ambiguous=setup(async()=>({ok:true,json:async()=>({features:[102.4,102.41].map(lng=>({geometry:{type:'Point',coordinates:[lng,15.1]},properties:{name:'หนองบัว',state:'นครราชสีมา',county:'จักราช',district:'คลองเมือง',locality:'หนองบัว',housenumber:'95'}}))})}));
+    await ambiguous.search();assert.equal(ambiguous.nodes.latitude.value,'','Ambiguous houses silently accepted');
+    const noMap=setup(async()=>{throw Error('must not fetch');},true);
+    await noMap.search();assert.equal(noMap.nodes.findAddressLocation.disabled,false);assert.match(noMap.nodes.mapStatus.textContent,/โหลดไม่สำเร็จ/);
+    const locations=JSON.parse(fs.readFileSync('assets/data/registration-village-locations.json','utf8'));
+    let externalRequests=0;
+    const banBu=setup(async()=>{externalRequests++;throw Error('offline');},false,locations);
+    Object.assign(banBu.nodes.addressProvince,{value:'19'}); Object.assign(banBu.nodes.addressDistrict,{value:'3006'});
+    Object.assign(banBu.nodes.addressSubdistrict,{value:'300607',options:[{text:'หนองพลวง'}]});
+    banBu.nodes.addressVillage.value='บุ';banBu.nodes.addressMoo.value='8';banBu.nodes.addressHouse.value='';
+    await banBu.search();assert.equal(externalRequests,0,'Known village must work without external search');
+    assert.equal(banBu.map.marker.point.lat,15.090940);assert.equal(banBu.map.marker.point.lng,102.397999);
+    assert.equal(banBu.nodes.latitude.value,'');assert.equal(banBu.nodes.findAddressLocation.disabled,false);
+    assert.match(banBu.nodes.mapStatus.textContent,/บ้านบุ หมู่ 8/);
+    banBu.nodes.confirmMapLocation.events.click();assert.equal(banBu.nodes.latitude.value,'15.09094000');
+    banBu.nodes.addressHouse.value='95';await banBu.search();assert.equal(externalRequests,1);
+    assert.equal(banBu.map.marker.point.lng,102.397999,'House search failure lost local village point');
+    banBu.nodes.addressMoo.value='9';await banBu.search();assert.doesNotMatch(banBu.nodes.mapStatus.textContent,/พบจุดอ้างอิงบ้านบุ/);
+    console.log('PASS: village fallback, manual location, changed address, offline failure, stale response and invalid coordinates.');
+})().catch(error=>{console.error(error);process.exitCode=1;});

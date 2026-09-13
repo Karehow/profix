@@ -1,0 +1,9 @@
+.workflow-actions { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 1rem; border-top: 1px solid #dce7df; padding-top: 1rem; }
+.workflow-actions > form, .workflow-actions > details { margin: 0; padding: 1rem; border: 1px solid #dce7df; border-radius: .8rem; background: #fbfdfb; }
+.workflow-actions > p, .workflow-actions > a { align-self: start; }
+.workflow-actions label { line-height: 1.6; }
+.workflow-actions input[type="checkbox"] { width: 1.1rem; height: 1.1rem; margin-right: .3rem; vertical-align: middle; accent-color: #1b6449; }
+.workflow-actions input[type="number"] { min-height: 42px; }
+.workflow-actions summary { font-weight: 600; cursor: pointer; }
+.workflow-actions button { min-height: 44px; }
+@media (max-width: 575px) { .workflow-actions { grid-template-columns: 1fr; } }

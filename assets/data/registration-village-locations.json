@@ -1,0 +1,15 @@
+{
+  "300607-8": {
+    "province_id": "19",
+    "district_id": "3006",
+    "subdistrict_id": "300607",
+    "village_number": "8",
+    "village_name": "บุ",
+    "lat": 15.090940,
+    "lng": 102.397999,
+    "source": "https://www.mdes.go.th/uploads/tinymce/source/%E0%B8%A8%E0%B8%82/filedownload/24700.pdf",
+    "source_page": 128,
+    "source_row": 6005,
+    "precision": "village_reference"
+  }
+}

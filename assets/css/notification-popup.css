@@ -1,0 +1,61 @@
+.notification-popup .modal-dialog {
+    max-width: 680px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.notification-popup .modal-content {
+    border: 1px solid #d3ddcf;
+    border-radius: 20px;
+    box-shadow: 0 20px 70px #102a3640;
+    overflow: hidden;
+}
+.notification-popup-toolbar {
+    display: flex;
+    justify-content: flex-end;
+    padding: 12px 16px 0;
+    background: #f4f8f1;
+}
+.notification-popup-toolbar .btn-close {
+    min-width: 24px;
+    min-height: 24px;
+    padding: 8px;
+    margin: 0;
+}
+.notification-popup .modal-body {
+    padding: 0;
+    overscroll-behavior: contain;
+}
+.notification-popup #notificationInbox {
+    margin-bottom: 0 !important;
+    border-radius: 0;
+    box-shadow: none !important;
+}
+.notification-popup #notificationInbox > .card-header {
+    padding: 12px 22px 18px !important;
+    background: #f4f8f1 !important;
+}
+.notification-popup .list-group-item {
+    padding: 18px 22px !important;
+}
+.notification-popup .btn-close:focus-visible {
+    outline: 3px solid #b99945;
+    outline-offset: 2px;
+}
+html[data-theme=dark] .notification-popup-toolbar,
+html[data-theme=dark] .notification-popup #notificationInbox > .card-header {
+    background: #23382b !important;
+}
+html[data-theme=dark] .notification-popup .btn-close {
+    filter: invert(1) grayscale(100%) brightness(200%);
+}
+@media (max-width: 700px) {
+    .notification-popup .modal-dialog {
+        margin: 12px;
+        max-width: none;
+    }
+    .notification-popup .modal-content { border-radius: 16px; }
+    .notification-popup .list-group-item { padding: 16px !important; }
+    .notification-popup .list-group-item form { flex-wrap: wrap; }
+    .notification-popup .btn { min-height: 44px; }
+    .notification-popup .modal-dialog-scrollable { height: calc(100dvh - 24px); }
+}

@@ -1,0 +1,295 @@
+{
+    "source":  "LINE_ALBUM_อุปกรณ์_260907",
+    "note":  "ชื่อรายการประเมินจากภาพ จำนวนสต็อกเป็นข้อมูลจำลองตามคำขอ ภาพ 13 เป็นภาพรวมชั้นเก็บภาชนะ",
+    "overview_photos":  [
+                            13
+                        ],
+    "categories":  {
+                       "kitchen":  "อุปกรณ์ครัวและภาชนะ",
+                       "outdoor":  "อุปกรณ์กลางแจ้ง โต๊ะ และเก้าอี้",
+                       "ceremony":  "อุปกรณ์งานบุญและศาสนพิธี",
+                       "other":  "อุปกรณ์อำนวยความสะดวกและอื่น ๆ"
+                   },
+    "items":  [
+                  {
+                      "name":  "กระทะอะลูมิเนียมสองหู",
+                      "category":  "kitchen",
+                      "photos":  [
+                                     1
+                                 ],
+                      "quantity":  8
+                  },
+                  {
+                      "name":  "ทัพพีและกระบวยตักอาหาร",
+                      "category":  "kitchen",
+                      "photos":  [
+                                     2
+                                 ],
+                      "quantity":  30
+                  },
+                  {
+                      "name":  "ถ้วยชามลายดอกไม้",
+                      "category":  "kitchen",
+                      "photos":  [
+                                     3,
+                                     30
+                                 ],
+                      "quantity":  120
+                  },
+                  {
+                      "name":  "จานขาวขอบลาย",
+                      "category":  "kitchen",
+                      "photos":  [
+                                     4,
+                                     20
+                                 ],
+                      "quantity":  200
+                  },
+                  {
+                      "name":  "ผ้าใบและโครงเต็นท์",
+                      "category":  "outdoor",
+                      "photos":  [
+                                     5,
+                                     6
+                                 ],
+                      "quantity":  5
+                  },
+                  {
+                      "name":  "ตาลปัตรลายภาพพระ",
+                      "category":  "ceremony",
+                      "photos":  [
+                                     7
+                                 ],
+                      "quantity":  3
+                  },
+                  {
+                      "name":  "โต๊ะไม้ขนาดเล็ก",
+                      "category":  "ceremony",
+                      "photos":  [
+                                     8
+                                 ],
+                      "quantity":  12
+                  },
+                  {
+                      "name":  "ตาลปัตรลายธรรมจักร",
+                      "category":  "ceremony",
+                      "photos":  [
+                                     9
+                                 ],
+                      "quantity":  5
+                  },
+                  {
+                      "name":  "โต๊ะหมู่บูชาลายทอง",
+                      "category":  "ceremony",
+                      "photos":  [
+                                     10,
+                                     11
+                                 ],
+                      "quantity":  2,
+                      "is_set":  1,
+                      "components":  [
+                                         {
+                                             "quantity":  7,
+                                             "name":  "โต๊ะหมู่บูชาลายทอง",
+                                             "unit":  "ตัว"
+                                         },
+                                         {
+                                             "quantity":  1,
+                                             "name":  "โต๊ะฐานรอง",
+                                             "unit":  "ตัว"
+                                         },
+                                         {
+                                             "quantity":  1,
+                                             "name":  "พระพุทธรูป",
+                                             "unit":  "องค์"
+                                         },
+                                         {
+                                             "quantity":  2,
+                                             "name":  "เชิงเทียน",
+                                             "unit":  "อัน"
+                                         }
+                                     ]
+                  },
+                  {
+                      "name":  "เสื่อและพรมปูรองนั่ง",
+                      "category":  "ceremony",
+                      "photos":  [
+                                     12
+                                 ],
+                      "quantity":  20
+                  },
+                  {
+                      "name":  "ช้อนตักอาหารด้ามยาว",
+                      "category":  "kitchen",
+                      "photos":  [
+                                     14
+                                 ],
+                      "quantity":  100
+                  },
+                  {
+                      "name":  "จานลายดอกไม้สีชมพู",
+                      "category":  "kitchen",
+                      "photos":  [
+                                     15
+                                 ],
+                      "quantity":  80
+                  },
+                  {
+                      "name":  "เขียงไม้กลม",
+                      "category":  "kitchen",
+                      "photos":  [
+                                     16,
+                                     26
+                                 ],
+                      "quantity":  10
+                  },
+                  {
+                      "name":  "ครกหิน",
+                      "category":  "kitchen",
+                      "photos":  [
+                                     17
+                                 ],
+                      "quantity":  8
+                  },
+                  {
+                      "name":  "เตาแก๊สขาเหล็ก",
+                      "category":  "kitchen",
+                      "photos":  [
+                                     18,
+                                     21
+                                 ],
+                      "quantity":  6
+                  },
+                  {
+                      "name":  "แก้วน้ำอะลูมิเนียมมีหู",
+                      "category":  "kitchen",
+                      "photos":  [
+                                     28,
+                                     19
+                                 ],
+                      "quantity":  150
+                  },
+                  {
+                      "name":  "ลังพลาสติกใส่ภาชนะ",
+                      "category":  "other",
+                      "photos":  [
+                                     22
+                                 ],
+                      "quantity":  30
+                  },
+                  {
+                      "name":  "ฝาหม้ออะลูมิเนียม",
+                      "category":  "kitchen",
+                      "photos":  [
+                                     23
+                                 ],
+                      "quantity":  20
+                  },
+                  {
+                      "name":  "หม้ออะลูมิเนียมสองหู",
+                      "category":  "kitchen",
+                      "photos":  [
+                                     24,
+                                     39
+                                 ],
+                      "quantity":  15
+                  },
+                  {
+                      "name":  "ถังอะลูมิเนียมหูหิ้ว",
+                      "category":  "kitchen",
+                      "photos":  [
+                                     25
+                                 ],
+                      "quantity":  10
+                  },
+                  {
+                      "name":  "ตะหลิว",
+                      "category":  "kitchen",
+                      "photos":  [
+                                     27
+                                 ],
+                      "quantity":  20
+                  },
+                  {
+                      "name":  "กระโถนอะลูมิเนียม",
+                      "category":  "ceremony",
+                      "photos":  [
+                                     29
+                                 ],
+                      "quantity":  12
+                  },
+                  {
+                      "name":  "ช้อนสเตนเลส",
+                      "category":  "kitchen",
+                      "photos":  [
+                                     31
+                                 ],
+                      "quantity":  200
+                  },
+                  {
+                      "name":  "ถาดเคลือบลายดอกไม้",
+                      "category":  "kitchen",
+                      "photos":  [
+                                     32,
+                                     33
+                                 ],
+                      "quantity":  30
+                  },
+                  {
+                      "name":  "กะละมังอะลูมิเนียม",
+                      "category":  "kitchen",
+                      "photos":  [
+                                     34,
+                                     35
+                                 ],
+                      "quantity":  15
+                  },
+                  {
+                      "name":  "แก้วน้ำใส",
+                      "category":  "kitchen",
+                      "photos":  [
+                                     36,
+                                     37
+                                 ],
+                      "quantity":  120
+                  },
+                  {
+                      "name":  "ถ้วยชามสีขาว",
+                      "category":  "kitchen",
+                      "photos":  [
+                                     38
+                                 ],
+                      "quantity":  150
+                  },
+                  {
+                      "name":  "ชุดพานเงินและพานทอง",
+                      "category":  "ceremony",
+                      "photos":  [
+                                     40
+                                 ],
+                      "quantity":  10,
+                      "is_set":  1,
+                      "components":  [
+                                         {
+                                             "quantity":  1,
+                                             "name":  "พานเงิน",
+                                             "unit":  "ใบ"
+                                         },
+                                         {
+                                             "photo":  40,
+                                             "quantity":  1,
+                                             "name":  "พานทอง",
+                                             "unit":  "ใบ"
+                                         }
+                                     ]
+                  },
+                  {
+                      "name":  "กระถางธูปสีทอง",
+                      "category":  "ceremony",
+                      "photos":  [
+                                     41
+                                 ],
+                      "quantity":  5
+                  }
+              ]
+}

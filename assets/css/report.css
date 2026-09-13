@@ -1,0 +1,11 @@
+/* Shared mPDF-safe print styling. */
+body{color:#263f34}
+h1{color:#255a3d;padding-bottom:9px;border-bottom:2px solid #adc49c}
+h2{color:#356444}
+th,.items th{background:#e7efdf;color:#315336;border-color:#bdcfaf}
+td,.items td{border-color:#ccd7c3}
+thead{display:table-header-group}
+tr{page-break-inside:avoid}
+.subtitle,.muted,.footer{color:#6c7d62}
+.summary{background:#f5f1df;border-color:#e0d5ae;color:#655d37}
+.footer{border-top:1px solid #d7e0ce;padding-top:8px}

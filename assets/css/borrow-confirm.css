@@ -1,0 +1,24 @@
+.app-ui .confirm-container { max-width: 940px; }
+.confirm-steps { display: flex; gap: 10px; margin-bottom: 22px; font-size: 13px; }
+.confirm-steps a,.confirm-steps span { padding: 9px 16px; border-radius: 24px; text-decoration: none; background: #eaf0e4; color: #326144; }
+.confirm-steps [aria-current] { background: #235d43; color: white; }
+.confirm-page .item-thumb { width: 56px; height: 56px; object-fit: cover; border: 1px solid #dfe7da; border-radius: 10px; background: #fff; }
+.confirm-page .confirm-quantity { width: 82px; margin: 0 auto; text-align: center; min-height: 44px; }
+.confirm-date-shortcuts { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.confirm-date-shortcuts button { background: #f3f7ef; color: #286041; border: 1px solid #c8d8bf; border-radius: 20px; padding: 8px 14px; min-height: 40px; font-size: 12px; }
+.confirm-date-shortcuts button:hover { background: #e1edda; }
+.confirm-page #borrowCheckout { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.confirm-page #borrowCheckout > input[type=hidden] { display: none; }
+.confirm-page #borrowCheckout > .d-flex { grid-column: 1 / -1; gap: 14px; }
+.confirm-page #borrowCheckout > .mb-3 { margin-bottom: 0 !important; }
+.confirm-page #borrowCheckout input[type=date] { min-height: 48px; font-size: 16px; }
+.confirm-page [name=submit_request] { min-height: 50px; }
+html[data-theme=dark] .confirm-date-shortcuts button { background: #293d2e; border-color: #4c6547; color: #d2e3cb; }
+@media(max-width:650px) {
+    .confirm-page #borrowCheckout { grid-template-columns: 1fr; }
+    .confirm-page #borrowCheckout > .d-flex { flex-direction: column; align-items: stretch !important; }
+    .confirm-page .confirm-steps { gap: 6px; font-size: 11px; }
+    .confirm-steps a,.confirm-steps span { padding: 9px 12px; }
+    .confirm-page .table td:first-child { min-width: 180px; }
+    .confirm-page .btn { min-height: 44px; }
+}

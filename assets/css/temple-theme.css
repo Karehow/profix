@@ -1,0 +1,35 @@
+@import url('temple-ui.css');
+
+:root {
+    --temple-green: #176b45;
+    --temple-green-dark: #0d4b30;
+    --temple-green-light: #eaf6ef;
+    --temple-gold: #d7a843;
+    --temple-cream: #f7f8f2;
+    --temple-ink: #1d3428;
+}
+body { background: var(--temple-cream) !important; color: var(--temple-ink); }
+.navbar { background: linear-gradient(100deg, var(--temple-green-dark), var(--temple-green)) !important; }
+.navbar-brand { letter-spacing: .15px; }
+.btn-primary { background-color: var(--temple-green); border-color: var(--temple-green); }
+.btn-primary:hover, .btn-primary:focus { background-color: var(--temple-green-dark); border-color: var(--temple-green-dark); }
+.btn-outline-primary { color: var(--temple-green); border-color: var(--temple-green); }
+.btn-outline-primary:hover { background-color: var(--temple-green); border-color: var(--temple-green); }
+.btn-warning { background-color: var(--temple-gold); border-color: var(--temple-gold); color: #2d2105; }
+.btn-outline-warning { color: #8e6511; border-color: var(--temple-gold); }
+.btn-outline-warning:hover { background-color: var(--temple-gold); border-color: var(--temple-gold); color: #2d2105; }
+.card { border-radius: 14px; overflow: hidden; }
+.card-header { border-bottom-color: #dce8df; }
+.table-light { --bs-table-bg: #eff7f1; --bs-table-striped-bg: #e6f2e9; }
+.badge.bg-primary { background-color: var(--temple-green) !important; }
+.text-primary { color: var(--temple-green) !important; }
+.border-primary { border-color: var(--temple-green) !important; }
+.alert-success { background: #e6f4ea; border-color: #b9dfc3; color: #175d36; }
+.temple-hero, .hero-banner, .staff-banner, .admin-hero { background: linear-gradient(125deg, var(--temple-green-dark), var(--temple-green) 62%, #258557) !important; position: relative; overflow: hidden; }
+.temple-hero::after, .hero-banner::after, .staff-banner::after, .admin-hero::after { content: '☸'; position: absolute; right: 3%; top: -48px; font-size: 210px; opacity: .08; line-height: 1; }
+.temple-hero > *, .hero-banner > *, .staff-banner > *, .admin-hero > * { position: relative; z-index: 1; }
+.metric-card { border-radius: 14px; }
+.action-card, .menu-card { border: 1px solid rgba(23,107,69,.06) !important; }
+.action-card:hover, .menu-card:hover { border-color: rgba(23,107,69,.28) !important; }
+.form-control:focus, .form-select:focus { border-color: #63a982; box-shadow: 0 0 0 .25rem rgba(23,107,69,.14); }
+@media (max-width: 767px) { .navbar .container { gap: .5rem; } .navbar .d-flex { flex-wrap: wrap; } }

@@ -1,0 +1,49 @@
+/* Management screens use the borrower dashboard's temple identity. */
+body.app-ui:has(.management-topbar) { background:#f8f7f2 !important; color:#234b3e; }
+.app-ui .management-topbar { left:0; height:74px; z-index:1040; padding:0 26px; color:#fff; background:linear-gradient(110deg,#173f31,#285c50); border-bottom:1px solid #bfa861; box-shadow:0 3px 12px #153f3212; }
+.management-brand { display:flex; align-items:center; gap:14px; color:#fff; text-decoration:none; font-size:21px; font-weight:700; }
+.management-brand:hover { color:#f2dc98; }
+.management-brand small { display:block; font-size:12px; color:#f0e3bb; font-weight:400; }
+.management-brand-mark { color:#e5c876; }
+.management-brand-mark .ui-icon { width:48px; height:48px; }
+.management-topbar .ui-account { max-width:none; gap:14px; }
+.management-topbar .ui-account small { color:#d4e6d9; }
+.management-topbar .dashboard-notice { position:relative; display:grid; place-items:center; width:44px; height:44px; flex:0 0 44px; color:#fff1b8; background:#ffffff12; border:1px solid #ddc78380; border-radius:50%; text-decoration:none; }
+.management-topbar .dashboard-notice:hover { color:#fff; background:#ffffff18; }
+.management-topbar .dashboard-bell-icon { display:block; width:25px; height:25px; stroke:currentColor; fill:none; }
+.management-topbar .dashboard-notice > span { position:absolute; top:0; right:0; padding:0 5px; border-radius:20px; background:#e76149; color:#fff; font-size:10px; }
+.management-topbar .ui-avatar { width:42px; height:42px; border:1px solid #dfc77d; }
+.management-logout { min-height:42px; display:flex; align-items:center; gap:8px; padding:8px 16px; background:transparent; border:1px solid #d6bc71; border-radius:24px; color:#fff3ce; font-size:12px; }
+.management-logout:hover { background:#ffffff18; }
+.management-topbar .ui-menu-toggle { background:#ffffff0d; color:#fff3ce; border-color:#96ad8e; flex-shrink:0; }
+.management-topbar ~ .ui-sidebar { top:74px; padding:20px 15px; background:linear-gradient(to bottom,#fff 70%,#faf4df); }
+.management-topbar ~ .ui-sidebar > .ui-brand { display:none; }
+.management-topbar ~ .ui-sidebar .ui-navigation a { min-height:46px; gap:14px; color:#325746; }
+.management-topbar ~ .ui-sidebar .ui-navigation a[aria-current=page] { background:linear-gradient(110deg,#1b513e,#296448); color:#fff; box-shadow:none; }
+.management-topbar ~ .ui-sidebar .ui-navigation a[aria-current=page] .ui-icon { color:#f0d88d; }
+.management-topbar ~ .ui-sidebar .ui-nav-group p { display:flex; align-items:center; gap:12px; margin-top:20px; }
+.management-topbar ~ .ui-sidebar .ui-nav-group p::after { content:''; height:1px; background:#dce4dc; flex:1; }
+.management-topbar ~ .ui-sidebar .ui-sidebar-footer { padding-top:90px; background:url('../images/temple-welcome.svg') center top / 150px auto no-repeat; }
+@media (max-width:1099px) {
+    .management-brand { font-size:18px; gap:10px; }
+    .management-brand small { font-size:11px; }
+    .management-topbar .ui-account strong { max-width:140px; }
+}
+@media (max-width:700px) {
+    .app-ui .management-topbar { height:126px; padding:12px 16px; flex-wrap:wrap; gap:8px; }
+    .management-topbar .ui-topbar-start { width:100%; justify-content:space-between; }
+    .management-brand { font-size:16px; }
+    .management-brand small { font-size:10px; }
+    .management-brand-mark .ui-icon { width:36px; height:36px; }
+    .management-topbar .ui-account { width:100%; gap:10px; }
+    .management-topbar .ui-account form { margin-left:auto; }
+    .management-topbar .ui-account strong { max-width:140px; font-size:11px; }
+    .management-topbar .ui-avatar { width:36px; height:36px; }
+    .management-logout { padding:8px 12px; min-height:44px; }
+    .management-logout span { display:none; }
+    .management-topbar ~ .ui-sidebar { top:126px; }
+    body.app-ui:has(.management-topbar) { padding-top:146px !important; }
+}
+html[data-theme=dark] body.app-ui:has(.management-topbar) { background:#18271f !important; color:#e1e9dc; }
+html[data-theme=dark] .management-topbar ~ .ui-sidebar { background:#203329; }
+html[data-theme=dark] .management-topbar ~ .ui-sidebar .ui-navigation a { color:#dfebdb; }

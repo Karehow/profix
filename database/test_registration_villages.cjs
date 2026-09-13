@@ -1,0 +1,21 @@
+const fs=require('fs'),vm=require('vm'),assert=require('assert');
+class Option { constructor(text,value){this.text=text;this.value=value;this.dataset={};} }
+const nodes={};
+for(const id of ['registrationVillageData','addressVillageSelect','addressDistrict','addressSubdistrict','addressMoo','addressVillage','villageManual']) nodes[id]={value:'',dataset:{},events:{},addEventListener(e,fn){this.events[e]=fn;},dispatchEvent(){this.invalidated=true;}};
+const select=nodes.addressVillageSelect;
+select.options=[];select.replaceChildren=function(...rows){this.options=rows;};select.add=function(row){this.options.push(row);};
+Object.defineProperty(select,'selectedIndex',{get(){return this.options.findIndex(o=>o.value===this.value);}});
+nodes.registrationVillageData.textContent=fs.readFileSync('assets/data/registration-villages.json','utf8');
+vm.runInNewContext(fs.readFileSync('assets/js/registration-villages.js','utf8'),{document:{getElementById:id=>nodes[id]},Option,Event:class{}});
+assert.equal(select.options.length,2);
+nodes.addressSubdistrict.value='300601';nodes.addressSubdistrict.events.change();
+select.value='300601-4';select.events.change();
+assert.equal(nodes.addressMoo.value,'4');assert.equal(nodes.addressVillage.value,'จักราช');assert.equal(nodes.addressMoo.readOnly,true);
+assert.equal(nodes.villageManual.hidden,true);
+nodes.addressSubdistrict.value='300611';nodes.addressSubdistrict.events.change();
+assert.equal(nodes.addressMoo.value,'');assert.equal(nodes.addressVillage.value,'');assert(nodes.addressVillage.invalidated);
+select.value='other';select.events.change();
+assert.equal(nodes.villageManual.hidden,false);assert.equal(nodes.addressMoo.readOnly,false);
+nodes.addressSubdistrict.value='';nodes.addressDistrict.events.change();
+assert.equal(select.options.length,2);assert.equal(select.value,'');assert.equal(nodes.addressVillage.value,'');
+console.log('PASS: village filtering, moo autofill, changed subdistrict clears old address, manual fallback.');

@@ -1,0 +1,115 @@
+html body.auth-page.auth-login-page {
+    background: linear-gradient(rgba(16, 40, 37, .18), rgba(16, 40, 37, .3)),
+        var(--site-banner, url('../images/login-temple.jpg')) center center / cover no-repeat fixed !important;
+    min-height: 100vh;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+}
+
+.auth-login-page .auth-header {
+    background: rgba(255, 255, 255, .56);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, .35);
+    border-radius: 0;
+    margin: 0 auto;
+    width: 100%;
+    max-width: none;
+    gap: 12px;
+}
+
+.auth-login-page .auth-brand {
+    margin-right: auto;
+}
+
+.auth-login-page .auth-header .auth-back {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 10px 18px;
+    border: 1px solid #28634e;
+    border-radius: 12px;
+    background: #1d6149;
+    color: #fff !important;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    box-shadow: 0 3px 10px rgba(16, 40, 37, .14);
+    transition: background-color .15s, box-shadow .15s;
+}
+
+.auth-login-page .auth-header .auth-back:hover {
+    background: #144e38;
+    box-shadow: 0 4px 14px rgba(16, 40, 37, .24);
+}
+
+.auth-login-page .auth-header .theme-toggle {
+    min-height: 44px;
+    border-radius: 12px;
+}
+
+.auth-login-page .auth-layout {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    width: 100%;
+    max-width: 520px;
+    margin: 0 auto;
+    padding: 32px 20px;
+}
+
+.auth-login-page .auth-card {
+    width: 100%;
+    padding: 32px;
+    box-shadow: 0 12px 40px rgba(10, 35, 30, .18);
+}
+
+.auth-register-page .auth-layout {
+    max-width: 800px;
+    align-items: flex-start;
+}
+
+.auth-register-page .auth-card {
+    padding: 36px 40px;
+}
+
+.auth-login-page .auth-support {
+    background: transparent;
+    padding: 18px 0 0;
+    border-top: 1px solid #dce5dc;
+    border-radius: 0;
+}
+
+.auth-login-page .auth-footnote {
+    color: #fff !important;
+    text-shadow: 0 1px 4px #102825;
+}
+
+html[data-theme=dark] .auth-login-page .auth-header {
+    background: rgba(22, 36, 31, .6);
+}
+
+@media (max-width: 575px) {
+    .auth-login-page .auth-brand {
+        width: 100%;
+    }
+    .auth-login-page .auth-header .auth-back,
+    .auth-login-page .auth-header .theme-toggle {
+        flex: 1;
+    }
+}
+
+@media (max-width: 800px) {
+    .auth-login-page .auth-header {
+        border-radius: 0;
+    }
+    .auth-login-page .auth-layout {
+        padding: 24px 16px;
+    }
+    .auth-login-page .auth-card {
+        padding: 26px 22px;
+    }
+}

@@ -1,0 +1,8 @@
+.profile-photo-editor { display: flex; align-items: center; gap: 24px; }
+.profile-photo-frame { flex: 0 0 112px; }
+.profile-photo-frame img { width: 112px; height: 112px; border-radius: 50%; object-fit: cover; border: 4px solid #e5eee6; background: #e5eee6; }
+.profile-photo-controls { flex: 1; min-width: 0; }
+@media (max-width: 575px) {
+    .profile-photo-editor { flex-direction: column; align-items: stretch; gap: 16px; }
+    .profile-photo-frame { flex-basis: auto; align-self: center; }
+}

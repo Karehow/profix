@@ -1,0 +1,11 @@
+/* Match the shared banner setting while keeping white staff heading text legible. */
+html body.app-ui .staff-banner.staff-hero {
+    background: linear-gradient(90deg, #173f31ed 0%, #173f31c9 48%, #173f3166 100%),
+        var(--site-banner, url('../images/login-temple.jpg')) center 42% / cover no-repeat !important;
+    border: 1px solid #bfa861;
+}
+html body.app-ui .staff-banner.staff-hero::after { display: none; }
+html body.app-ui .staff-banner.staff-hero .text-white-50 { color: #f0f4e9 !important; }
+@media (max-width: 575px) {
+    html body.app-ui .staff-banner.staff-hero { background-position: center, 65% center !important; }
+}
